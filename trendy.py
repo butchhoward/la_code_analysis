@@ -67,6 +67,8 @@ def slope_of(raw_data):
 epsilon = 0.000000001  # todo how the hell do you know if that is a good value?
 
 def slope_word(slope):
+	if slope == float('inf'):
+		return 'ukn'
 	if slope > epsilon:
 		return 'pos'
 	if slope < (0-epsilon):
@@ -301,3 +303,7 @@ def test_slope_word_sez_sbl_when_input_near_zero():
 	assert slope_word(epsilon/10) == 'sbl'
 	assert slope_word(0) == 'sbl'
 	assert slope_word(-epsilon/10) == 'sbl'
+
+
+def test_slop_word_sez_ukn_when_input_is_inf():
+	assert slope_word(float('inf')) == 'ukn'
